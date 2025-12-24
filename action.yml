@@ -1,0 +1,59 @@
+name: Node npm publish
+
+inputs:
+  working_directory:
+    description: "Directory to run npm publish in (default: repository root)"
+    required: false
+    type: string
+    default: "."
+
+  node_version:
+    description: "Node version to install (e.g., 24)"
+    required: false
+    type: string
+    default: "24"
+  
+  access_level:
+    description: "The access level for the npm package (e.g., public or restricted)"
+    required: false
+    type: string
+    default: "public"
+
+  node_access_token:
+    description: "The npm access token to authenticate publishing"
+    required: true
+    type: string
+
+outputs:
+  npm_publish_exit_code:
+    description: "The exit code from the npm publish command"
+    value: ${{ steps.npm_publish.outputs.exit_code }}
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v6
+
+    - name: Setup Node
+      uses: actions/setup-node@v6
+      with:
+        node-version: ${{ inputs.node_version }}
+
+    - name: Install Node Dependencies
+      shell: bash
+      working-directory: ${{ inputs.working_directory }}
+      run: npm ci
+
+    - name: Run npm publish
+      id: npm_publish
+      shell: bash
+      working-directory: ${{ inputs.working_directory }}
+      env:
+        NODE_AUTH_TOKEN: ${{ inputs.node_access_token }}
+      run: |
+        npm publish --access=${{ inputs.access_level }}
+
+        EXIT_CODE=$?
+        echo "exit_code=$EXIT_CODE" >> $GITHUB_OUTPUT
