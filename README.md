@@ -1,6 +1,6 @@
 # Core Cloud Workflow Node npm publish
 
-A GitHub Actions workflow for running npm publish on Node.js projects to identify and report code quality issues.
+A GitHub Actions workflow for running npm publish on Node.js projects to publish code to code registries
 
 ## Overview
 
