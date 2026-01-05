@@ -23,7 +23,7 @@ Reference this workflow in your GitHub Actions pipeline:
 ```yaml
 jobs:
     publish:
-        uses: UKHomeOffice/core-cloud-workflow-node-npm-publish
+        uses: UKHomeOffice/core-cloud-workflow-node-npm-package
         with:
             node_access_token: ${{ secrets.NPM_TOKEN }}
 

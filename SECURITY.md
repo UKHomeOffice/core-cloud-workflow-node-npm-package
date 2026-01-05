@@ -15,11 +15,11 @@ The directories:
 
 contain node code that:
 
-* violate eslint rules
+* will not publish
 
 These files are required to:
 
-* validate the npm lint reusable action
+* validate the npm package reusable action
 
 These files **must not** be treated as code.
 
