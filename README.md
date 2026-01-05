@@ -11,11 +11,10 @@ This workflow automates code publishing of Node.js projects within the core-clou
 - Automated npm publish
 - Using node access token to access npm or github
 
-
 ## Requirements
 
 - Valid `package.json`, `package-lock.json`
-- Node
+- Valid registry to publish to
 
 ## Usage
 
